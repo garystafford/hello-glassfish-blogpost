@@ -134,7 +134,7 @@
         </exec>
     </target>
     
-    <target name="list-all-properties" depends="clean, default, test">
+    <target name="list-all-properties">
         <echoproperties />
     </target>
 
