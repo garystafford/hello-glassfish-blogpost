@@ -107,47 +107,41 @@
     properties which you can use check the target you are overriding in 
     nbproject/build-impl.xml file. 
     -->
+    <loadproperties>
+        <file file="domain1.properties"/>
+    </loadproperties>
 
-    <target name="jenkins-glassfish-deploy-test" 
-            description="Clean, build, test and deploy application to GlassFish">
-        <antcall target="clean" />
-        <antcall target="dist" />
-        <antcall target="test" />
+    <target name="jenkins-glassfish-deploy-test" depends="clean, dist, test"
+            description="Clean, build WAR, test and deploy to GlassFish">
         <exec failonerror="true" vmlauncher="false" 
               executable="${j2ee.server.home}/bin/asadmin" 
               description="Deploy to GlassFish">
-            <arg value="--host=localhost --port=4848 --user=admin
-                --passwordfile=pwdfile_domain1 --secure=false
-                deploy --force=true --name='${ant.project.name}' 
-                --contextroot='/${ant.project.name}' '${dist.war}'" />
-        </exec>
-    </target>
-
-    <target name="jenkins-glassfish-deploy-test-alt" depends="clean, dist, test"
-            description="Clean, build, test and deploy application to GlassFish">
-        <exec failonerror="true" vmlauncher="false" 
-      executable="${j2ee.server.home}/bin/asadmin" 
-      description="Deploy to GlassFish">
-            <arg value="--host=localhost --port=4848 --user=admin
-                --passwordfile=pwdfile_domain1 --secure=false
+            <arg value="--host=${prop.glassfish.host} 
+                --port=${prop.glassfish.port} 
+                --user=${prop.glassfish.user} 
+                --passwordfile=${prop.glassfish.pswfile}
+                --echo=true
                 deploy --force=true --name='${ant.project.name}' 
                 --contextroot='/${ant.project.name}' '${dist.war}'" />
         </exec>
     </target>
     
-    <target name="glassfish-deploy" depends="clean, dist"
-            description="Build distribution (WAR) and deploy to GlassFish">               
+    <target name="jenkins-glassfish-deploy" depends="clean, dist"
+            description="Clean, build WAR, and deploy to GlassFish">               
         <exec failonerror="true" vmlauncher="false" 
-              executable="${j2ee.server.home}/bin/asadmin"
+              executable="${j2ee.server.home}/bin/asadmin" 
               description="Deploy to GlassFish">
-            <arg line="--host=localhost --port=4848 --user=admin 
-                --passwordfile=pwdfile_domain1 --secure=false
+            <arg value="--host=${prop.glassfish.host} 
+                --port=${prop.glassfish.port} 
+                --user=${prop.glassfish.user} 
+                --passwordfile=${prop.glassfish.pswfile}
+                --echo=true
                 deploy --force=true --name='${ant.project.name}' 
                 --contextroot='/${ant.project.name}' '${dist.war}'" />
         </exec>
     </target>
     
-    <target name="list-all-properties">
+    <target name="list-all-properties" depends="dist">
         <echoproperties />
     </target>
 </project>
