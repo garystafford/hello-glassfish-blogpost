@@ -8,3 +8,6 @@ $ASADMIN_HOME, is set to your GlassFish directory. In my case:
 /home/gstafford/glassfish-3.1.2.2/glassfish.
 
 Reference: http://stackoverflow.com/a/10488054
+
+Location of project.properties: 
+.../hello-glassfish-blogpost/HelloGlassFish/nbproject/project.properties
