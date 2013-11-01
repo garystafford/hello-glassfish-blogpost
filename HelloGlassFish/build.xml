@@ -108,7 +108,7 @@
     nbproject/build-impl.xml file. 
     -->
     <loadproperties>
-        <file file="domain1.properties"/>
+        <file file="jenkins.properties"/>
     </loadproperties>
 
     <target name="jenkins-glassfish-deploy-test" depends="clean, dist, test"
@@ -119,7 +119,7 @@
             <arg value="--host=${prop.glassfish.host} 
                 --port=${prop.glassfish.port} 
                 --user=${prop.glassfish.user} 
-                --passwordfile=${prop.glassfish.pswfile}
+                --passwordfile=${prop.glassfish.pwdfile}
                 --echo=true
                 deploy --force=true --name='${ant.project.name}' 
                 --contextroot='/${ant.project.name}' '${dist.war}'" />
@@ -134,7 +134,7 @@
             <arg value="--host=${prop.glassfish.host} 
                 --port=${prop.glassfish.port} 
                 --user=${prop.glassfish.user} 
-                --passwordfile=${prop.glassfish.pswfile}
+                --passwordfile=${prop.glassfish.pwdfile}
                 --echo=true
                 deploy --force=true --name='${ant.project.name}' 
                 --contextroot='/${ant.project.name}' '${dist.war}'" />
