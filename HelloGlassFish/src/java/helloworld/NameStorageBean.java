@@ -16,7 +16,7 @@ import javax.ejb.Singleton;
 public class NameStorageBean {
 
     // name field
-    private String name = "GlassFish Server!";
+    private String name = "GlassFish Server";
 
     public String getName() {
         return name;
